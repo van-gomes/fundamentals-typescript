@@ -12,5 +12,5 @@ class User {
     }
 }
 
-const users = new User('Vanessa', 23);
+const users: User = new User('Vanessa', 23);
 users.showName();

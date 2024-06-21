@@ -1,47 +1,10 @@
-abstract class Acount {
-    name: string
-    acountNumber: number
-    balance: number = 0
+import { PeopleAccount } from "./class/PeopleAccount";
+import { CompanyAccount } from "./class/CompanyAccount";
 
-    constructor(name: string, acountNumber: number) {
-        this.name = name
-        this.acountNumber = acountNumber
-    }
+const peopleAcount: PeopleAccount = new PeopleAccount (1,'Rafael', 1);
+console.log(peopleAcount.deposit);
 
-    deposit = () => {
-        console.log('Você depositou');
-    }
+const companyAcount: CompanyAccount = new CompanyAccount ('Diego', 1);
+console.log(companyAcount.deposit);
 
-    withdraw = () => {
-        console.log('Você sacou');
-    }
-
-    requestLoan = () => {
-        console.log('Você solicitou empréstimo')
-    }
-
-    getBalance = () => {
-        console.log(this.balance);
-    }
-}
-
-class PeopleAcount extends Acount {
-    doc_id: number
-
-    constructor(doc_id: number, name: string, acountNumber: number) {
-        super(name, acountNumber)
-        this.doc_id = doc_id
-    }
-}
-
-/* 
-const acount: Acount = new Acount('Diego', 1);
-console.log(acount);
-
-const newAcount: Acount = new Acount('Rafael', 2);
-newAcount.requestLoan();
-
-const acountAdmin: Admin = new Admin('Rafael', 2);
-console.log(acountAdmin);
-*/
 

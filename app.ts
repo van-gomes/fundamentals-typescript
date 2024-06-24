@@ -7,6 +7,8 @@ peopleAcount.setName('Isadora Chrispin');
 console.log(peopleAcount.getName());
 
 const companyAcount: CompanyAccount = new CompanyAccount ('Diego', 1);
+companyAcount.setName('Diego Valente');
+console.log(companyAcount.getName());
 console.log(companyAcount.deposit());
 
 

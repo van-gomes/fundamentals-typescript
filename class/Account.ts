@@ -1,46 +1,72 @@
 export abstract class Account {
-    private name: string
-    private readonly accountNumber: number
-    balance: number = 0
-    private status: boolean = true
+    private name: string;
+    private readonly accountNumber: number;
+    private balance: number = 0;
+    private status: boolean = true;
 
-    constructor(name: string, accountNumber: number) {
-        this.name = name
-        this.accountNumber = accountNumber
+    constructor(name: string, accountNumber: number, balance: number, status: boolean) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.status = status;
     }
 
-    deposit = (): void => {
-        if(this.validateStatus()) {
-            console.log('Você depositou');
+    deposit = (amount: number): void => {
+        if (this.validateStatus()) {
+            this.balance += amount;
+            console.log(`Você depositou ${amount}. Novo saldo: ${this.balance}`);
+        } else {
+            console.log('Conta inativa. Depósito não permitido.');
         }
-    }
+    };
 
-    withdraw = (): void => {
-        console.log('Você sacou');
-    }
-
+    withdraw = (amount: number): void => {
+        if (this.validateStatus() && this.balance > amount) {
+            this.balance -= amount;
+            console.log(`Você sacou ${amount}. Novo saldo: ${this.balance}`);
+        } else if (!this.validateStatus()) {
+            console.log('Conta inativa. Saque não permitido.');
+        } else {
+            console.log('Saldo insuficiente.');
+        }
+    };
+    
     requestLoan = (): void => {
         console.log('Você solicitou um empréstimo');
-    }
+    };
 
-    getBalance = (): void => {
+    validateStatus = (): boolean => {
+        if (this.status) {
+            return this.status;
+        }
+        throw new Error('Conta inativa!');
+    };
+
+    getBalance = (): number => {
         console.log(this.balance);
-    }
+        return this.balance;
+    };
 
-    setName = (name: string): void => {
-        this.name = name;
-        console.log("Nome alterado com sucesso");
-    }
+    setBalance = (amount: number): void => {
+        this.balance += amount;
+        console.log(`Saldo atualizado com sucesso: ${this.balance}`)
+    };
 
     getName = (): string => {
         return this.name;
-    }
+    };
 
-    validateStatus = (): boolean => {
-        if(this.status) {
-            return this.status;
-        }
+    setName = (name: string): void => {
+        this.name = name;
+        console.log('Nome alterado com sucesso');
+    };
 
-        throw new Error();
-    }
+    getStatus = (): boolean => {
+        return this.status;
+    };
+
+    setStatus = (status: boolean): void => {
+        this.status = status;
+        console.log(`O status da sua conta é: ${this.status}`);
+    };    
 }
